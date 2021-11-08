@@ -16,9 +16,12 @@ export const todoReducer = (state = initialState, action) => {
     }
     case 'DELETE_TODO': {
       const newList = [...state.listTodo]
+      const index = newList.findIndex((item) => item.id === action.payload.id)
+      newList.splice(index, 1)
+      // newList.filter(item => item.id!==action.payload.id)
       return {
         ...state,
-        listTodo: newList.filter((item) => item.id === action.payload.id)
+        listTodo: newList
       }
     }
     default:
